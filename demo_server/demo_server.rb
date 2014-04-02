@@ -7,7 +7,7 @@ class CsvDatabaseBook
   attr_accessor :ean, :title, :description, :authors, :publisher, :available, :price
 
   def server_url
-    "http://youripaddress:9292/"
+    "http://78.123.248.47:9292/"
   end
 
   def download_file(url, local)
@@ -38,6 +38,7 @@ class CsvDatabaseBook
     @authors.each do |a|
       imml_book.metadata.contributors << IMML::Book::Contributor.create(a, "author")
     end
+    imml_book.metadata.topics = IMML::Book::Topics.create_unsupported
     imml_book.metadata.publisher=IMML::Book::Publisher.create(@publisher)
     imml_book.assets=IMML::Book::Assets.create
     imml_book.assets.cover=IMML::Book::Cover.create("image/png", nil, nil, nil, self.cover_url)
@@ -46,6 +47,7 @@ class CsvDatabaseBook
     imml_book.assets.extracts << extract
 
     imml_book.offer=IMML::Book::Offer.create("digital", @available)
+    imml_book.offer.sales_start_at=IMML::Book::SalesStartAt.create_unsupported
     imml_book.offer.prices << IMML::Book::Price.create("EUR", @price, "WORLD")
     imml_book
   end
