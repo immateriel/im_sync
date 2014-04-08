@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:immateriel/imml.git
-  revision: f8064e44c11e89e3bab0afc0cb2ea765222323d5
+  revision: 46e349291325bc20efb2674a21864fa408ccdbd4
   specs:
     imml (1.0.0)
       levenshtein

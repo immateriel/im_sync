@@ -145,7 +145,7 @@ module Rack
             body=req.body.read
             puts "REQUEST:"
             puts body
-            doc.parse_data(body, false)
+            doc.parse_data(body)
 
             book=CsvDatabaseBook.new
             book.from_imml_book(doc.book)
@@ -168,7 +168,7 @@ module Rack
             puts "REQUEST:"
             puts body
 
-            doc.parse_data(body, false)
+            doc.parse_data(body)
 
             book_param=doc.header.params.select { |p| p.name=="book" }.first
             if book_param

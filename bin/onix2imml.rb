@@ -8,7 +8,7 @@ require 'onix2imml'
 @output=nil
 
 @options = OptionParser.new
-@options.banner = "Usage: ask.rb [options ...]"
+@options.banner = "Usage: onix2imml.rb [options ...]"
 
 @options.separator ""
 @options.separator "Options :"
