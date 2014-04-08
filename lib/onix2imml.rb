@@ -8,9 +8,10 @@ class Onix2Imml
     @imml_books=[]
   end
 
-  def parse_onix_file(filename)
+  # parse ONIX file or data
+  def parse_onix(data)
     msg=ONIX::ONIXMessage.new
-    msg.parse(filename)
+    msg.parse(data)
 
     msg.products.each do |product|
       if product.sold_separately?

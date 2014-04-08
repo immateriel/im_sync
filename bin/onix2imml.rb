@@ -29,7 +29,7 @@ require 'onix2imml'
 
 if @input and @output
   onix=Onix2Imml.new
-  onix.parse_onix_file(@input)
+  onix.parse_onix(@input)
   onix.imml_books.each do |b|
     filename="#{@output}_#{b.ean}.xml"
     doc=IMML::Document.new
