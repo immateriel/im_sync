@@ -10,7 +10,7 @@ begin
     gem.authors = ["julbouln"]
     gem.files = Dir.glob('bin/**/*') + Dir.glob('lib/**/*')
     gem.add_dependency "imml"
-
+    gem.add_dependency "im_onix"
   end
   Jeweler::GemcutterTasks.new
 
