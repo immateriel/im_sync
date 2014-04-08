@@ -1,2 +1,2 @@
 gem 'rack'
-gem 'imml', :git => 'git@github.com:immateriel/imml.git'
+gem 'imml', :git => 'https://github.com/immateriel/imml'
