@@ -13,13 +13,15 @@ Gem::Specification.new do |s|
   s.date = "2014-04-08"
   s.description = "immat\u{e9}riel.fr sync tools"
   s.email = "jboulnois@immateriel.fr"
-  s.executables = ["ask.rb"]
+  s.executables = ["ask.rb", "onix2imml.rb"]
   s.extra_rdoc_files = [
     "README.md"
   ]
   s.files = [
     "bin/ask.rb",
-    "lib/ask.rb"
+    "bin/onix2imml.rb",
+    "lib/ask.rb",
+    "lib/onix2imml.rb"
   ]
   s.homepage = "http://github.com/immateriel/im_sync"
   s.require_paths = ["lib"]
@@ -31,14 +33,14 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<imml>, [">= 0"])
-      s.add_runtime_dependency(%q<imml>, [">= 0"])
+      s.add_runtime_dependency(%q<im_onix>, [">= 0"])
     else
       s.add_dependency(%q<imml>, [">= 0"])
-      s.add_dependency(%q<imml>, [">= 0"])
+      s.add_dependency(%q<im_onix>, [">= 0"])
     end
   else
     s.add_dependency(%q<imml>, [">= 0"])
-    s.add_dependency(%q<imml>, [">= 0"])
+    s.add_dependency(%q<im_onix>, [">= 0"])
   end
 end
 
