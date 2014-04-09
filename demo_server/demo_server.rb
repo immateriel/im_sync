@@ -27,9 +27,13 @@ class CsvDatabaseBook
     system("convert database/#{@ean}.png -resize 16384@ database/#{@ean}.tiny.png")
 
     if imml_book.assets.extracts.first
-      self.download_file(imml_book.assets.extracts.first.url, "database/#{@ean}.epub")
+      self.download_file(imml_book.assets.extracts.first.url, "database/#{@ean}_extract.epub")
     end
 
+    epub=imml_book.assets.fulls.select{|f| f.mimetype=~/epub/}.first
+    if epub
+      self.download_file(epub.url, "database/#{@ean}.epub")
+    end
   end
 
   def to_imml_book
@@ -43,8 +47,12 @@ class CsvDatabaseBook
     imml_book.assets=IMML::Book::Assets.create
     imml_book.assets.cover=IMML::Book::Cover.create("image/png", nil, nil, nil, self.cover_url)
     extract=IMML::Book::Extract.create("application/epub+zip", nil)
-    extract.set_checksum("database/#{@ean}.epub")
+    extract.set_checksum("database/#{@ean}_extract.epub")
     imml_book.assets.extracts << extract
+
+    full=IMML::Book::Full.create("application/epub+zip", nil)
+    full.set_checksum("database/#{@ean}.epub")
+    imml_book.assets.fulls << full
 
     imml_book.offer=IMML::Book::Offer.create("digital", @available)
     imml_book.offer.sales_start_at=IMML::Book::SalesStartAt.create_unsupported
