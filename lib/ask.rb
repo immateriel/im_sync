@@ -8,11 +8,24 @@ class Ask
   @@ask_check_url="https://ws.immateriel.fr/fr/web_service/ask_check"
   @@ask_push_url="https://ws.immateriel.fr/fr/web_service/ask_push"
 
-  def initialize(receive_url,check_url)
+  def initialize
     @doc=IMML::Document.new
     @doc.header=IMML::Header::Header.create
+  end
+
+  def test_ident(receive_url,check_url)
     @doc.header.test=IMML::Header::Test.create(receive_url,check_url,nil)
-    nil
+  end
+
+  def ident(api_key,reseller_id,reseller_gencod)
+    @doc.header.authentication=IMML::Header::Authentication.create(api_key)
+    if reseller_id
+      @doc.header.reseller=IMML::Header::Reseller.create(reseller_id)
+    else
+      if reseller_gencod
+        @doc.header.reseller=IMML::Header::Reseller.create(nil,reseller_gencod)
+      end
+    end
   end
 
   def add_book_param(ean)
