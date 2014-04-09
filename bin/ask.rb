@@ -69,14 +69,14 @@ if @mode and ["receive", "check"].include?(@mode)
         puts "SEND MESSAGE:"
         puts @ask.doc.to_xml
       end
-#      @ask.ask_push
+      @ask.ask_push
     when "check"
       @ask.add_book_param(@book)
       if @debug
         puts "SEND MESSAGE:"
         puts @ask.doc.to_xml
       end
-#      @ask.ask_check
+      @ask.ask_check
   end
 
 else
