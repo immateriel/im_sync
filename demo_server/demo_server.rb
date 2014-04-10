@@ -1,5 +1,6 @@
 require 'rack/request'
 require 'rack/response'
+require 'net/http'
 require 'imml'
 require 'csv'
 
@@ -7,11 +8,22 @@ class CsvDatabaseBook
   attr_accessor :ean, :title, :description, :authors, :publisher, :available, :price
 
   def server_url
-    "http://78.123.248.47:9292/"
+    "http://youripaddress:9292/"
+  end
+
+  def download_file_wget(url, local)
+    system("wget #{url} -O #{local}")
   end
 
   def download_file(url, local)
-    system("wget #{url} -O #{local}")
+    puts "DOWNLOAD #{url} to #{local}"
+    uri=URI.parse(url)
+    Net::HTTP.start(uri.host,uri.port) do |http|
+      resp = http.get(uri.path)
+      open(local, "wb") do |file|
+        file.write(resp.body)
+      end
+    end
   end
 
   def from_imml_book(imml_book)
