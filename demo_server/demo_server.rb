@@ -160,7 +160,7 @@ module Rack
         # receive URL for web services
         when /^\/receive\/?$/
           # only for immatériel.fr
-          if req.ip == self.immateriel_ip
+          if [req.ip, env["HTTP_X_REAL_IP"], env["HTTP_X_FORWARDED_FOR"]].include?(self.immateriel_ip)
             doc=IMML::Document.new
             body=req.body.read
             puts "REQUEST:"
