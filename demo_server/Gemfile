@@ -1,2 +1,4 @@
+source 'http://rubygems.org'
+
 gem 'rack'
 gem 'imml', :git => 'https://github.com/immateriel/imml'
